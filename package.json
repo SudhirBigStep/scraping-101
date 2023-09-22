@@ -1,0 +1,19 @@
+{
+  "name": "scraping",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "google-auth-library": "^9.0.0",
+    "googleapis": "^126.0.1",
+    "handlebars": "^4.7.8",
+    "nodemailer": "^6.9.5",
+    "puppeteer": "^19.4.0"
+  }
+}
