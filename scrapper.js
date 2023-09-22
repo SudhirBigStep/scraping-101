@@ -19,7 +19,7 @@ async function scrapeGoogleChat() {
   //TODO : change to your email 
   await page.waitForSelector('input[type="email"]');
   await page.click('input[type="email"]')
-  await page.type('input[type="email"]', 'sudhir.taneja@bigsteptech.com')
+  await page.type('input[type="email"]', '*')
   
 
   await page.waitForSelector('#identifierNext')
@@ -30,7 +30,7 @@ async function scrapeGoogleChat() {
   await page.click('input[type="password"]')
 
   //TODO : change to your password
-  await page.type('input[type="password"]', 'IknowThat@11')
+  await page.type('input[type="password"]', '*')
 
   await page.waitForSelector('#passwordNext')
   await page.click('#passwordNext')  

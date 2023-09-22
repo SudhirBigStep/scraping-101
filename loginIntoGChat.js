@@ -16,7 +16,7 @@ async function loginToGoogleChat() {
   await navigationPromise
 
   //TODO : change to your email 
-  await page.type('input[type="email"]', 'sudhir.taneja@bigsteptech.com')
+  await page.type('input[type="email"]', '*')
 
   await page.waitForSelector('#identifierNext')
   await page.click('#identifierNext')
