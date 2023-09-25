@@ -10,10 +10,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.5.0",
+    "dotenv": "^16.3.1",
     "google-auth-library": "^9.0.0",
     "googleapis": "^126.0.1",
     "handlebars": "^4.7.8",
+    "natural": "^6.7.2",
+    "node-summarizer": "^1.0.7",
     "nodemailer": "^6.9.5",
-    "puppeteer": "^19.4.0"
+    "puppeteer": "^19.4.0",
+    "tesseract.js": "^4.1.2"
   }
 }
