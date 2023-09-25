@@ -88,6 +88,7 @@ async function executePuppeteerScript(page, email, password, space_url,months) {
       await frame.page().keyboard.press('ArrowUp')
     }
     const isTargetVisible = await frame.evaluate(() => {
+      const date = new Date();
       const targetElement = document.querySelector('div[class="cK9mzf"]'); // Replace with the selector of your target element
       const topElement = document.querySelector('button[aria-label="Add people & apps to this space"]');
       if (targetElement || topElement) {
@@ -95,7 +96,7 @@ async function executePuppeteerScript(page, email, password, space_url,months) {
         const year = 2023; // You can change this to any desired year
         const dateStringWithYear = dateString + `, ${year}`;
         const specificDate = dateString != 'Yesterday' && dateString != 'Today' ? new Date(dateStringWithYear): new Date();
-        return specificDate <= new Date('Friday, June 02' + `, ${year}`) || topElement;
+        return specificDate <= date.setMonth(date.getMonth-parseInt(months,10)) || topElement;
       }
       return false;
     });
@@ -105,20 +106,19 @@ async function executePuppeteerScript(page, email, password, space_url,months) {
       console.log('Reached the target text "Mon 18 Sep".');
     }
   }
-  const divText = await frame.evaluate(async () => {
+  let title = await page.title();
+  const divText = await frame.evaluate(async (title) => {
     // debugger
     let namesNodes = document.querySelectorAll('div[jsname="A9KrYd"]');
     let messagesNodes = document.querySelectorAll('div[class="Hj5Fxb"]');
-    let title = document.title;
-    let names = [];
     let messages = [];
     for(let i = 0;i< messagesNodes.length;i++) {
       const text = messagesNodes[i].firstElementChild.textContent.trim()
       const imgSrc = messagesNodes[i].getElementsByClassName('HQLhSc').length != 0? messagesNodes[i].getElementsByClassName('HQLhSc')[0].src: null;
-      messages.push({text,title, imgSrc, name: namesNodes[i].textContent.trim()});
+      messages.push({text, title, imgSrc, name: namesNodes[i].textContent.trim()});
     }
     return messages;
-  });
+  }, title);
     
   if (divText !== null) {
     console.log('Text content of the div inside the iframe:', divText);
