@@ -87,7 +87,7 @@ async function executePuppeteerScript(page, email, password, space_url,months) {
     for(let i = 0;i<3;i++) {
       await frame.page().keyboard.press('ArrowUp')
     }
-    const isTargetVisible = await frame.evaluate(() => {
+    const isTargetVisible = await frame.evaluate((months) => {
       const date = new Date();
       const targetElement = document.querySelector('div[class="cK9mzf"]'); // Replace with the selector of your target element
       const topElement = document.querySelector('button[aria-label="Add people & apps to this space"]');
@@ -99,7 +99,7 @@ async function executePuppeteerScript(page, email, password, space_url,months) {
         return specificDate <= date.setMonth(date.getMonth-parseInt(months,10)) || topElement;
       }
       return false;
-    });
+    }, months);
 
     if (isTargetVisible) {
       reachedTarget = true;
